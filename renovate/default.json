@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Common Renovate config for Appium packages",
+  "extends": [
+    "config:js-app",
+    "group:definitelyTyped",
+    "workarounds:typesNodeVersioning",
+    ":automergeStableNonMajor",
+    ":automergeDigest",
+    ":enableVulnerabilityAlerts",
+    ":rebaseStalePrs",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "@types/supports-color",
+        "@types/wrap-ansi",
+        "chalk",
+        "conf",
+        "del",
+        "delay",
+        "env-paths",
+        "execa",
+        "figures",
+        "get-port",
+        "get-stream",
+        "globby",
+        "got",
+        "log-symbols",
+        "ora",
+        "p-retry",
+        "pkg-dir",
+        "read-pkg",
+        "strip-ansi",
+        "supports-color",
+        "term-size",
+        "vinyl-paths",
+        "wrap-ansi",
+        "write-pkg"
+      ],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    },
+    {
+      "extends": ["packages:eslint"],
+      "matchPackageNames": ["@appium/eslint-config-appium-ts"],
+      "groupName": "ESLint-related packages",
+      "groupSlug": "eslint"
+    },
+    {
+      "matchPackageNames": ["teen_process", "@types/teen_process"],
+      "groupName": "teen_process-related packages",
+      "groupSlug": "teen_process"
+    },
+    {
+      "matchPackageNames": ["appium", "@appium/**", "!@appium/eslint-config-appium-ts"],
+      "groupName": "Appium-related packages",
+      "groupSlug": "appium"
+    }
+  ],
+  "semanticCommitScope": "{{#if parentDir}}{{parentDir}}{{else}}deps{{/if}}"
+}
